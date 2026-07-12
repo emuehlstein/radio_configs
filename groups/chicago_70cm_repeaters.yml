@@ -1,0 +1,36 @@
+# Chicago-area 70cm amateur repeaters — from SSRF vendor tree.
+
+group:
+  id: "chicago_70cm_repeaters"
+  name: "Chicago 70cm"
+  purpose: "Chicago-area 70cm ham repeaters"
+  priority: 155
+  services: ["amateur"]
+  license: "amateur"
+
+  channels:
+    # chain_ns9rc_440_fm — NS9RC 440 analog: RX 442.725, TX 447.725 (+5), PL 114.8
+    - inline:
+        short_name: "NS9RC4"
+        name: "NS9RC 440"
+        rx_freq_mhz: 442.725
+        tx_freq_mhz: 447.725
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: 114.8
+        tx_tone: 114.8
+        scan: true
+        rx_only: false
+
+    # chain_ka9hhh_440_fm — SARA 440: RX 444.375, TX 449.375 (+5), PL 114.8
+    - inline:
+        short_name: "SARA4"
+        name: "SARA 440"
+        rx_freq_mhz: 444.375
+        tx_freq_mhz: 449.375
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: 114.8
+        tx_tone: 114.8
+        scan: true
+        rx_only: false

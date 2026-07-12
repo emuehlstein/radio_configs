@@ -1,4 +1,5 @@
-# Chicago-area 2m amateur repeaters — starter set.
+# Chicago-area 2m amateur repeaters — tones from SSRF vendor tree
+# (vendor/OpenGD77_SSRFLite_Generator/ssrf/systems/US/IL/Cook/Chicago/amateur/).
 
 group:
   id: "chicago_2m_repeaters"
@@ -9,7 +10,8 @@ group:
   license: "amateur"
 
   channels:
-    # NS9RC — replace values from SSRF ns9rc_repeaters.yml once vendored
+    # asgn from ns9rc_repeaters.yml — chain_ns9rc_2m_fm
+    # NS9RC 2m Fusion (analog side): RX 147.345, TX 147.945 (+0.6), PL 107.2
     - inline:
         short_name: "NS9RC"
         name: "NS9RC 2m"
@@ -17,20 +19,21 @@ group:
         tx_freq_mhz: 147.945
         mode: "FM"
         bandwidth: "wide"
-        rx_tone: 107.2   # TODO verify from SSRF
+        rx_tone: 107.2
         tx_tone: 107.2
         scan: true
         rx_only: false
 
-    # SARA — placeholder
+    # asgn from sara_repeaters.yml — chain_ka9hhh_2m_fm
+    # SARA (KA9HHH): RX 146.880, TX 146.280 (-0.6), PL 107.2
     - inline:
         short_name: "SARA"
         name: "SARA 2m"
-        rx_freq_mhz: 145.230
-        tx_freq_mhz: 144.630
+        rx_freq_mhz: 146.880
+        tx_freq_mhz: 146.280
         mode: "FM"
         bandwidth: "wide"
-        rx_tone: 114.8   # TODO verify from SSRF
-        tx_tone: 114.8
+        rx_tone: 107.2
+        tx_tone: 107.2
         scan: true
         rx_only: false

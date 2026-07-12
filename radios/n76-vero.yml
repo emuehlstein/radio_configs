@@ -35,6 +35,7 @@ radio:
         - "simplex_2m"
         - "simplex_70cm"
         - "chicago_2m_repeaters"
+        - "chicago_70cm_repeaters"
 
     - slot: 1
       name: "APRS"                  # APRS + packet

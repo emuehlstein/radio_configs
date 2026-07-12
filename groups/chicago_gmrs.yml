@@ -1,85 +1,132 @@
-# Chicago-area GMRS repeaters — a starter set. Expand from SSRF once
-# the ssrf/ subtree is vendored in.
+# Chicago-area GMRS repeaters — tones from SSRF vendor tree
+# (vendor/OpenGD77_SSRFLite_Generator/ssrf/systems/US/IL/Cook/Chicago/gmrs/chicago_gmrs_repeaters.yml).
+#
+# Once the SSRF ref resolver is wired, migrate each channel from
+# `inline:` to `ssrf_ref: asgn_gmrs_<id>`.
 
 group:
   id: "chicago_gmrs"
   name: "Chicago GMRS"
-  purpose: "Chicago-area GMRS repeaters + local simplex"
+  purpose: "Chicago-area GMRS repeaters"
   priority: 170
   services: ["gmrs"]
   license: "gmrs"
 
   channels:
-    # NSEA Evanston 725 — replace tone with SSRF-sourced value once vendored
+    # asgn_gmrs_evanston_725 — Open, PL 100.0
     - inline:
         short_name: "EV725"
-        name: "Evanston 725"
+        name: "Evan 725"
         rx_freq_mhz: 462.725
         tx_freq_mhz: 467.725
         mode: "FM"
         bandwidth: "narrow"
-        rx_tone: 141.3   # TODO verify from SSRF
-        tx_tone: 141.3
+        rx_tone: 100.0
+        tx_tone: 100.0
         scan: true
         rx_only: false
 
+    # asgn_gmrs_evanston_700 — Permission required, PL 107.2
     - inline:
         short_name: "EV700"
-        name: "NSEA Evan700"
+        name: "Evan 700"
         rx_freq_mhz: 462.700
         tx_freq_mhz: 467.700
         mode: "FM"
         bandwidth: "narrow"
-        rx_tone: 141.3   # TODO verify from SSRF
-        tx_tone: 141.3
+        rx_tone: 107.2
+        tx_tone: 107.2
         scan: true
         rx_only: false
 
+    # asgn_gmrs_lincolnwood_575 — Permission required, no PL published in SSRF
     - inline:
         short_name: "LW575"
-        name: "Lincolnwd575"
+        name: "Lincolnwd 575"
         rx_freq_mhz: 462.575
         tx_freq_mhz: 467.575
-        mode: "FM"
-        bandwidth: "narrow"
-        rx_tone: 141.3   # TODO verify from SSRF
-        tx_tone: 141.3
-        scan: true
-        rx_only: false
-
-    - inline:
-        short_name: "OH575"
-        name: "OHare 575"
-        rx_freq_mhz: 462.575
-        tx_freq_mhz: 467.575
-        mode: "FM"
-        bandwidth: "narrow"
-        rx_tone: null   # TODO verify from SSRF
-        tx_tone: null
-        scan: true
-        rx_only: false
-
-    - inline:
-        short_name: "PL600"
-        name: "PL-600"
-        rx_freq_mhz: 462.600
-        tx_freq_mhz: 467.600
-        mode: "FM"
-        bandwidth: "narrow"
-        rx_tone: null   # TODO verify from SSRF
-        tx_tone: null
-        scan: true
-        rx_only: false
-
-    # GMRS simplex 15
-    - inline:
-        short_name: "G15S"
-        name: "GMRS15 Splx"
-        rx_freq_mhz: 462.550
-        tx_freq_mhz: 462.550
         mode: "FM"
         bandwidth: "narrow"
         rx_tone: null
         tx_tone: null
         scan: true
+        rx_only: true      # unknown PL — receive only until confirmed
+        mute: false
+
+    # asgn_gmrs_chicago_575 — Open, PL 141.3 (co-freq w/ Lincolnwood 575)
+    - inline:
+        short_name: "CH575"
+        name: "Chi 575"
+        rx_freq_mhz: 462.575
+        tx_freq_mhz: 467.575
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 141.3
+        tx_tone: 141.3
+        scan: true
         rx_only: false
+
+    # asgn_gmrs_chicago_600 — Open, PL 192.8
+    - inline:
+        short_name: "CH600"
+        name: "Chi 600"
+        rx_freq_mhz: 462.600
+        tx_freq_mhz: 467.600
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 192.8
+        tx_tone: 192.8
+        scan: true
+        rx_only: false
+
+    # asgn_gmrs_parkridge_675 — Permission required, PL 141.3
+    - inline:
+        short_name: "PR675"
+        name: "ParkRdg 675"
+        rx_freq_mhz: 462.675
+        tx_freq_mhz: 467.675
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 141.3
+        tx_tone: 141.3
+        scan: true
+        rx_only: false
+
+    # asgn_gmrs_northbrook_650 — Permission required, PL 107.2
+    - inline:
+        short_name: "NB650"
+        name: "NBrook 650"
+        rx_freq_mhz: 462.650
+        tx_freq_mhz: 467.650
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 107.2
+        tx_tone: 107.2
+        scan: true
+        rx_only: false
+
+    # asgn_gmrs_forest_view_650 — Open, PL 203.5 (co-freq w/ Northbrook)
+    - inline:
+        short_name: "FV650"
+        name: "FrstV 650"
+        rx_freq_mhz: 462.650
+        tx_freq_mhz: 467.650
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 203.5
+        tx_tone: 203.5
+        scan: true
+        rx_only: false
+
+    # asgn_gmrs_oak_lawn_625 — Permission required, no PL published
+    - inline:
+        short_name: "OL625"
+        name: "OakLwn 625"
+        rx_freq_mhz: 462.625
+        tx_freq_mhz: 467.625
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true      # unknown PL — receive only until confirmed

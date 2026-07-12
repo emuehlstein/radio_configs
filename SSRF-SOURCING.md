@@ -1,44 +1,55 @@
 # SSRF-Lite data sourcing
 
-The `ssrf/` directory in this repo is **vendored** from
-[`emuehlstein/OpenGD77_SSRFLite_Generator`](https://github.com/emuehlstein/OpenGD77_SSRFLite_Generator).
-This keeps `radio_configs` self-contained (no cross-repo runtime coupling)
-while letting SSRF-Lite reference data live where it's already curated.
+SSRF-Lite reference data comes from
+[`emuehlstein/OpenGD77_SSRFLite_Generator`](https://github.com/emuehlstein/OpenGD77_SSRFLite_Generator)
+and is vendored into this repo as a **git subtree** at
+`vendor/OpenGD77_SSRFLite_Generator/`. The actual SSRF YAML files live
+under `vendor/OpenGD77_SSRFLite_Generator/ssrf/`.
 
-Currently vendored as a **subtree** rooted at `ssrf/`. To pull upstream
-updates:
+This keeps `radio_configs` self-contained (no cross-repo runtime
+coupling) while letting SSRF-Lite reference data continue to live in
+its upstream repo where it's already curated.
+
+## Refresh from upstream
 
 ```zsh
-git remote add ssrf-upstream git@github.com:emuehlstein/OpenGD77_SSRFLite_Generator.git 2>/dev/null || true
-git fetch ssrf-upstream main
-git subtree pull --prefix=ssrf ssrf-upstream main --squash
+git fetch ssrf-upstream main    # remote already configured
+git subtree pull --prefix=vendor/OpenGD77_SSRFLite_Generator \
+  ssrf-upstream main --squash
 ```
 
-To push local edits back upstream (rare; SSRF-Lite reference data
-should generally live in the source repo, not here):
+If the remote isn't set up yet in your local clone:
 
 ```zsh
-git subtree push --prefix=ssrf ssrf-upstream ssrf-changes-YYYYMMDD
+git remote add ssrf-upstream \
+  git@github.com:emuehlstein/OpenGD77_SSRFLite_Generator.git
+```
+
+## Push local edits back upstream (rare)
+
+SSRF reference data should live in the source repo, not here. If you
+need to push a fix out:
+
+```zsh
+git subtree push --prefix=vendor/OpenGD77_SSRFLite_Generator \
+  ssrf-upstream ssrf-changes-YYYYMMDD
 # then open a PR from that branch upstream
 ```
 
-## Alternative: git submodule
+## Data layout
 
-If you prefer a submodule instead of a subtree (avoids pulling upstream
-history into this repo, but every clone requires
-`git submodule update --init`), swap the recipe above for:
-
-```zsh
-git submodule add git@github.com:emuehlstein/OpenGD77_SSRFLite_Generator.git ssrf-src
-ln -s ssrf-src/ssrf ssrf
+```
+vendor/OpenGD77_SSRFLite_Generator/
+├── ssrf/                             ← SSRF-Lite YAML lives here
+│   ├── plans/US/…                    ← FCC channel plans (GMRS, MURS, etc.)
+│   ├── systems/US/IL/Cook/Chicago/…  ← Chicagoland systems
+│   ├── talkgroups/                   ← DMR/D-STAR talkgroup catalogs
+│   └── _schema/                      ← Pydantic schema for validation
+├── policies/                         ← Rendering opinions (upstream)
+├── profiles/                         ← Preset SSRF filters (upstream)
+└── generate_*.py                     ← Upstream CSV/CPS generators
 ```
 
-The subtree approach is currently in use because it makes CI and offline
-builds simpler.
-
-## Policies
-
-Upstream also ships `policies/` (rendering opinions). We mirror the ones
-we use into `policies/` in this repo so per-radio configs can compose
-them, but we do **not** subtree the policies tree — those are opinions
-specific to this fleet.
+Our `groups/*.yml` files can reference SSRF assignments by id
+(e.g. `asgn_gmrs_evanston_725`) using the `ssrf_ref:` field — the
+resolver will materialize them from `vendor/OpenGD77_SSRFLite_Generator/ssrf/`.
