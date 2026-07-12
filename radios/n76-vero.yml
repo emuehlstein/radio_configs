@@ -8,7 +8,8 @@ radio:
   vendor: "Vero"
   model: "VR-N76"
   target: "n76"
-  ble_address: "377F7AC2-2AA3-D0F4-8DDC-D89A4C3594C6"
+  ble_address: "377F7AC2-2AA3-D0F4-8DDC-D89A4C3594C6"   # macOS CoreBluetooth UUID
+  linux_bt_mac: "38:D2:00:01:74:D9"                       # BR/EDR MAC (Linux)
 
   license:
     holder: "Eric"

@@ -124,7 +124,20 @@ def _blank_channel(slot_idx0: int):
 # ---------------------------------------------------------------------------
 
 async def _find_radio(preferred_addr: str = "", timeout: float = 12.0) -> str:
-    """Scan for the N76, matching by name or preferred BLE address."""
+    """Locate the N76.
+
+    On Linux (RFCOMM path), if the preferred_addr looks like a BR/EDR MAC
+    and the device is already paired, skip the BLE scan entirely and
+    return the address directly. Otherwise fall back to BleakScanner.
+    """
+    import platform
+    import re
+
+    br_edr_re = re.compile(r"^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$")
+    if platform.system() == "Linux" and preferred_addr and br_edr_re.match(preferred_addr):
+        print(f"linux: using paired BR/EDR MAC {preferred_addr} directly")
+        return preferred_addr
+
     from bleak import BleakScanner
 
     print(f"scanning {timeout}s for VR-N76...")
@@ -254,12 +267,30 @@ async def _main_async(args: argparse.Namespace) -> None:
         print(format_plan(plan))
         return
 
-    address = await _find_radio(radio_cfg.ble_address)
+    import platform
+    # Prefer Linux BR/EDR MAC on Linux, macOS UUID elsewhere.
+    if platform.system() == "Linux" and radio_cfg.linux_bt_mac:
+        preferred = radio_cfg.linux_bt_mac
+    else:
+        preferred = radio_cfg.ble_address
+    address = await _find_radio(preferred)
     print(f"connecting to {address}...")
 
     import benlink.controller as bc
 
-    async with bc.RadioController.new_ble(address) as radio:
+    # macOS: BLE only. Linux (BlueZ): SPP over RFCOMM is more reliable
+    # than BLE for the N76 after pairing — BLE tends to fail with
+    # br-connection-refused because BlueZ prefers BR/EDR once SDP
+    # records the SPP service.
+    is_linux = platform.system() == "Linux"
+    if is_linux and hasattr(bc.RadioController, "new_rfcomm"):
+        print("using RFCOMM (Linux)")
+        ctx = bc.RadioController.new_rfcomm(address, channel="auto")
+    else:
+        print("using BLE")
+        ctx = bc.RadioController.new_ble(address)
+
+    async with ctx as radio:
         print(f"connected fw={radio.device_info.firmware_version}")
         print(f"current region: {radio.status.curr_region}")
         print(f"region names: {radio.region_names}\n")

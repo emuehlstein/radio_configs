@@ -135,6 +135,8 @@ class Radio(BaseModel):
     serial: str = ""
     target: str
     ble_address: str = ""
+    linux_bt_mac: str = ""       # BR/EDR MAC for RFCOMM on Linux; falls back
+                                  # to ble_address / scan when empty
     license: RadioLicense = Field(default_factory=RadioLicense)
     tx_policy: TxPolicy = Field(default_factory=TxPolicy)
     capacity: Capacity
