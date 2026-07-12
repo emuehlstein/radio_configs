@@ -1,0 +1,12 @@
+profile:
+  name: "gmrs_only"
+  description: "GMRS-only build with national simplex plans for quick programming."
+  include:
+    paths:
+      - "ssrf/plans/US/gmrs/*.yml"
+      - "ssrf/plans/US/weather/noaa_weather.yml"
+    services: ["gmrs"]
+  policy:
+    files:
+      - "policies/gmrs_channels.yml"
+      - "policies/noaa_weather.yml"
