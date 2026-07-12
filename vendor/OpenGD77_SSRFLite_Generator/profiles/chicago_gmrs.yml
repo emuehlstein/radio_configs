@@ -1,0 +1,15 @@
+profile:
+  name: "chicago_gmrs"
+  description: "Chicago GMRS repeaters, family operations, and national simplex plans."
+  include:
+    paths:
+      - "ssrf/plans/US/gmrs/*.yml"
+      - "ssrf/plans/US/weather/noaa_weather.yml"
+      - "ssrf/systems/US/IL/Cook/Chicago/gmrs/*.yml"
+    services: ["gmrs"]
+  policy:
+    files:
+      - "policies/gmrs_channels.yml"
+      - "policies/chicago_gmrs_repeaters.yml"
+      - "policies/family_channels.yml"
+      - "policies/noaa_weather.yml"
