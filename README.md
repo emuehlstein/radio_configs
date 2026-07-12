@@ -30,7 +30,7 @@ facts into whatever format each radio wants to eat.
   overrides.
 - **Targets** — per-radio adapters that consume `{ssrf + groups +
   radio.yml}` and emit the native format:
-  - `targets/n76/`   — `benlink` live BLE write (Vero VR-N76 firmware)
+  - `targets/n76/`   — `benlink` live BLE / RFCOMM write (Vero VR-N76 firmware; 6 regions x 32 slots = 192 channels)
   - `targets/opengd77/` — CSVs for OpenGD77 CPS (RT3/UV380/MD-380/9600)
   - `targets/dm32/`  — `dmrconfig` text codeplug (BTECH DM-32)
   - `targets/chirp/` — CHIRP CSV/img (FT-2800M, Baofengs, TYT MD-9600)

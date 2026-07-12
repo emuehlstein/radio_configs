@@ -22,8 +22,8 @@ radio:
     # Weather + marine stay RX-only regardless.
 
   capacity:
-    containers: 5                   # 5 regions
-    channels_per_container: 32      # 32 slots each = 160 total
+    containers: 6                   # 6 regions (0..5) on the N76 firmware
+    channels_per_container: 32      # 32 slots each = 192 total
 
   layout:
     # slot indices are 0-based region ids on the N76.
