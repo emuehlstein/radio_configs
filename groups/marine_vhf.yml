@@ -1,0 +1,56 @@
+# Marine VHF — mostly RX; 16 is distress and only TX in emergency.
+# Include everywhere the radio is capable of 156 MHz reception.
+
+group:
+  id: "marine_vhf"
+  name: "Marine"
+  purpose: "Marine VHF — distress + hail + working channels"
+  priority: 60
+  services: ["marine"]
+  license: "none"       # marine SSB is licensed but VHF distress use is not
+
+  channels:
+    - inline:
+        short_name: "M16"
+        name: "Mar 16 Dst"
+        rx_freq_mhz: 156.800
+        tx_freq_mhz: 156.800
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true    # rx-only for safety; TX only in emergency
+    - inline:
+        short_name: "M09"
+        name: "Mar 09 Hai"
+        rx_freq_mhz: 156.450
+        tx_freq_mhz: 156.450
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false
+    - inline:
+        short_name: "M68"
+        name: "Mar 68 Rec"
+        rx_freq_mhz: 156.425
+        tx_freq_mhz: 156.425
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false
+    - inline:
+        short_name: "M72"
+        name: "Mar 72 Rec"
+        rx_freq_mhz: 156.625
+        tx_freq_mhz: 156.625
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false

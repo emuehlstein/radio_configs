@@ -1,0 +1,85 @@
+# Chicago-area GMRS repeaters — a starter set. Expand from SSRF once
+# the ssrf/ subtree is vendored in.
+
+group:
+  id: "chicago_gmrs"
+  name: "Chicago GMRS"
+  purpose: "Chicago-area GMRS repeaters + local simplex"
+  priority: 170
+  services: ["gmrs"]
+  license: "gmrs"
+
+  channels:
+    # NSEA Evanston 725 — replace tone with SSRF-sourced value once vendored
+    - inline:
+        short_name: "EV725"
+        name: "Evanston 725"
+        rx_freq_mhz: 462.725
+        tx_freq_mhz: 467.725
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 141.3   # TODO verify from SSRF
+        tx_tone: 141.3
+        scan: true
+        rx_only: false
+
+    - inline:
+        short_name: "EV700"
+        name: "NSEA Evan700"
+        rx_freq_mhz: 462.700
+        tx_freq_mhz: 467.700
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 141.3   # TODO verify from SSRF
+        tx_tone: 141.3
+        scan: true
+        rx_only: false
+
+    - inline:
+        short_name: "LW575"
+        name: "Lincolnwd575"
+        rx_freq_mhz: 462.575
+        tx_freq_mhz: 467.575
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 141.3   # TODO verify from SSRF
+        tx_tone: 141.3
+        scan: true
+        rx_only: false
+
+    - inline:
+        short_name: "OH575"
+        name: "OHare 575"
+        rx_freq_mhz: 462.575
+        tx_freq_mhz: 467.575
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null   # TODO verify from SSRF
+        tx_tone: null
+        scan: true
+        rx_only: false
+
+    - inline:
+        short_name: "PL600"
+        name: "PL-600"
+        rx_freq_mhz: 462.600
+        tx_freq_mhz: 467.600
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null   # TODO verify from SSRF
+        tx_tone: null
+        scan: true
+        rx_only: false
+
+    # GMRS simplex 15
+    - inline:
+        short_name: "G15S"
+        name: "GMRS15 Splx"
+        rx_freq_mhz: 462.550
+        tx_freq_mhz: 462.550
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false

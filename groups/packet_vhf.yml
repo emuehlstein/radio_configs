@@ -1,0 +1,39 @@
+# VHF packet — 1200 AFSK KISS TNC operation.
+# Must match on the FT-2800M (Bowmanville pi w/ Direwolf) and any handheld
+# running a KISS TNC over BLE.
+
+group:
+  id: "packet_vhf"
+  name: "Packet VHF"
+  purpose: "1200 AFSK KISS packet on VHF"
+  priority: 120
+  services: ["amateur"]
+  license: "amateur"
+
+  channels:
+    # MURS 2 — legal packet target for license-free testing (no ham license
+    # required, narrowband FM). Interop-critical for RNS-over-KISS tests.
+    - inline:
+        short_name: "MURS2"
+        name: "MURS 2"
+        rx_freq_mhz: 151.880
+        tx_freq_mhz: 151.880
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null
+        tx_tone: null
+        scan: false
+        rx_only: false
+
+    # 2m secondary packet
+    - inline:
+        short_name: "PKT2m"
+        name: "Pkt 145.010"
+        rx_freq_mhz: 145.010
+        tx_freq_mhz: 145.010
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: false
+        rx_only: false

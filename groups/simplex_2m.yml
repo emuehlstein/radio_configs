@@ -1,0 +1,46 @@
+# 2m amateur simplex — interop group for VHF ham radios in the fleet.
+
+group:
+  id: "simplex_2m"
+  name: "2m Simplex"
+  purpose: "VHF simplex calling + secondary chat"
+  priority: 150
+  services: ["amateur"]
+  license: "amateur"
+
+  channels:
+    - inline:
+        short_name: "2mCALL"
+        name: "2m Call"
+        rx_freq_mhz: 146.520
+        tx_freq_mhz: 146.520
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false
+
+    - inline:
+        short_name: "2m550"
+        name: "2m 146.550"
+        rx_freq_mhz: 146.550
+        tx_freq_mhz: 146.550
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false
+
+    - inline:
+        short_name: "2m580"
+        name: "2m 146.580"
+        rx_freq_mhz: 146.580
+        tx_freq_mhz: 146.580
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false

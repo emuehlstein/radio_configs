@@ -1,0 +1,60 @@
+# N76 (Vero VR-N76) — Eric's primary handheld.
+# BLE-programmable via benlink. Currently loaded with a South Shore MA
+# ham setup; this config replaces it with a Chicago-oriented layout.
+
+radio:
+  id: "n76-vero"
+  name: "Vero VR-N76"
+  vendor: "Vero"
+  model: "VR-N76"
+  target: "n76"
+  ble_address: "377F7AC2-2AA3-D0F4-8DDC-D89A4C3594C6"
+
+  license:
+    holder: "Eric"
+    call: "KC9MHE"
+    classes: ["amateur", "gmrs"]
+
+  tx_policy:
+    default_disabled: true
+    enabled_services: ["amateur", "gmrs"]
+    # Weather + marine stay RX-only regardless.
+
+  capacity:
+    containers: 5                   # 5 regions
+    channels_per_container: 32      # 32 slots each = 160 total
+
+  layout:
+    # slot indices are 0-based region ids on the N76.
+    # Region names get pushed to the radio via radio.set_region_name().
+
+    - slot: 0
+      name: "Ham"                   # 2m/70cm simplex + Chicago repeaters
+      groups:
+        - "simplex_2m"
+        - "simplex_70cm"
+        - "chicago_2m_repeaters"
+
+    - slot: 1
+      name: "APRS"                  # APRS + packet
+      groups:
+        - "aprs_vhf"
+        - "packet_vhf"
+
+    - slot: 2
+      name: "GMRS"                  # Chicago GMRS + family net
+      groups:
+        - "chicago_gmrs"
+        - "family_net"
+
+    - slot: 3
+      name: "Weather"               # NOAA WX (rx-only)
+      groups:
+        - "noaa_weather"
+
+    - slot: 4
+      name: "Marine"                # Marine VHF (mostly rx-only)
+      groups:
+        - "marine_vhf"
+
+  overrides: {}

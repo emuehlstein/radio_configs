@@ -1,0 +1,52 @@
+# Family net — GMRS + FRS shared channels for coordinated family / small-team use.
+# Every GMRS-capable radio (RT3 hybrid, DM-32, N76 UHF, Baofengs on GMRS chans,
+# actual GMRS handhelds) must render this identically.
+
+group:
+  id: "family_net"
+  name: "Family Net"
+  purpose: "GMRS/FRS coordination — same PL across the fleet"
+  priority: 180
+  services: ["gmrs"]
+  license: "gmrs"
+
+  channels:
+    # GMRS 16 simplex — primary family channel. PL 141.3 to keep the
+    # channel usable in a mixed-traffic area.
+    - inline:
+        short_name: "FAM16"
+        name: "FAM GMRS16"
+        rx_freq_mhz: 462.575
+        tx_freq_mhz: 462.575
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 141.3
+        tx_tone: 141.3
+        scan: true
+        rx_only: false
+
+    # GMRS 15 backup
+    - inline:
+        short_name: "FAM15"
+        name: "FAM GMRS15"
+        rx_freq_mhz: 462.550
+        tx_freq_mhz: 462.550
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: 141.3
+        tx_tone: 141.3
+        scan: true
+        rx_only: false
+
+    # FRS 1 for anyone on a bubble-pack — no tone so they can find you
+    - inline:
+        short_name: "FRS1"
+        name: "FRS 1"
+        rx_freq_mhz: 462.5625
+        tx_freq_mhz: 462.5625
+        mode: "FM"
+        bandwidth: "narrow"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false

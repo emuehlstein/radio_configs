@@ -1,0 +1,28 @@
+## Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+dist/
+build/
+
+## uv
+uv.lock
+
+## Generated artifacts — kept out of git; use `backups/` for anything
+## that must be preserved. Anything under `artifacts/` is reproducible
+## from ssrf + groups + radios + targets.
+artifacts/
+
+## Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+## Do NOT ignore:
+!backups/**
+!artifacts/.gitkeep

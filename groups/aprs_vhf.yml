@@ -1,0 +1,27 @@
+# APRS on 2m — used across every VHF-capable radio in the fleet.
+# This is a canonical interop group: freq/tone MUST match on every radio.
+
+group:
+  id: "aprs_vhf"
+  name: "APRS VHF"
+  purpose: "APRS packet, North America 2m"
+  priority: 200
+  services: ["amateur"]
+  license: "amateur"
+
+  channels:
+    # 144.390 MHz is the North American APRS freq. No tone, wide FM, mute
+    # by default because most people don't want to listen to AFSK bursts
+    # while scanning.
+    - inline:
+        short_name: "APRS"
+        name: "APRS 144.390"
+        rx_freq_mhz: 144.390
+        tx_freq_mhz: 144.390
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: false
+        rx_only: false
+        mute: true       # advisory; radios that support it should mute

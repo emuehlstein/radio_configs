@@ -1,0 +1,2 @@
+# Radio state backups live under this tree, keyed by radio id.
+# We keep this file so the tree exists even before any writes.

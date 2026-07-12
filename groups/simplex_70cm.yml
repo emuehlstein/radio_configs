@@ -1,0 +1,34 @@
+# 70cm amateur simplex.
+
+group:
+  id: "simplex_70cm"
+  name: "70cm Simplex"
+  purpose: "UHF simplex calling + secondary chat"
+  priority: 140
+  services: ["amateur"]
+  license: "amateur"
+
+  channels:
+    - inline:
+        short_name: "70CALL"
+        name: "70cm Call"
+        rx_freq_mhz: 446.000
+        tx_freq_mhz: 446.000
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false
+
+    - inline:
+        short_name: "70sec"
+        name: "70cm 446.025"
+        rx_freq_mhz: 446.025
+        tx_freq_mhz: 446.025
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: false

@@ -1,0 +1,45 @@
+[project]
+name = "radio_configs"
+version = "0.1.0"
+description = "Multi-radio codeplug pipeline for Eric's fleet (N76, RT3, DM-32, FT-2800M, truSDX, Baofengs)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.6",
+  "pyyaml>=6.0",
+  "click>=8.1",
+]
+
+[project.optional-dependencies]
+n76 = [
+  # benlink is pulled from the local checkout in dev; released version TBD
+  "bleak>=0.22",
+]
+dev = [
+  "pytest>=8.0",
+  "pytest-asyncio>=0.23",
+  "ruff>=0.4",
+]
+
+[project.scripts]
+radio-configs = "radio_configs.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/radio_configs"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

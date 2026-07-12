@@ -1,0 +1,36 @@
+# Chicago-area 2m amateur repeaters — starter set.
+
+group:
+  id: "chicago_2m_repeaters"
+  name: "Chicago 2m"
+  purpose: "Chicago-area 2m ham repeaters"
+  priority: 160
+  services: ["amateur"]
+  license: "amateur"
+
+  channels:
+    # NS9RC — replace values from SSRF ns9rc_repeaters.yml once vendored
+    - inline:
+        short_name: "NS9RC"
+        name: "NS9RC 2m"
+        rx_freq_mhz: 147.345
+        tx_freq_mhz: 147.945
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: 107.2   # TODO verify from SSRF
+        tx_tone: 107.2
+        scan: true
+        rx_only: false
+
+    # SARA — placeholder
+    - inline:
+        short_name: "SARA"
+        name: "SARA 2m"
+        rx_freq_mhz: 145.230
+        tx_freq_mhz: 144.630
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: 114.8   # TODO verify from SSRF
+        tx_tone: 114.8
+        scan: true
+        rx_only: false

@@ -1,0 +1,88 @@
+# NOAA weather radio — RX-only on every radio.
+
+group:
+  id: "noaa_weather"
+  name: "NOAA WX"
+  purpose: "NOAA Weather Radio, RX-only"
+  priority: 50
+  services: ["weather"]
+  license: "none"
+
+  channels:
+    - inline:
+        short_name: "WX1"
+        name: "WX 162.550"
+        rx_freq_mhz: 162.550
+        tx_freq_mhz: 162.550
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true
+    - inline:
+        short_name: "WX2"
+        name: "WX 162.400"
+        rx_freq_mhz: 162.400
+        tx_freq_mhz: 162.400
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true
+    - inline:
+        short_name: "WX3"
+        name: "WX 162.475"
+        rx_freq_mhz: 162.475
+        tx_freq_mhz: 162.475
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true
+    - inline:
+        short_name: "WX4"
+        name: "WX 162.425"
+        rx_freq_mhz: 162.425
+        tx_freq_mhz: 162.425
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true
+    - inline:
+        short_name: "WX5"
+        name: "WX 162.450"
+        rx_freq_mhz: 162.450
+        tx_freq_mhz: 162.450
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true
+    - inline:
+        short_name: "WX6"
+        name: "WX 162.500"
+        rx_freq_mhz: 162.500
+        tx_freq_mhz: 162.500
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true
+    - inline:
+        short_name: "WX7"
+        name: "WX 162.525"
+        rx_freq_mhz: 162.525
+        tx_freq_mhz: 162.525
+        mode: "FM"
+        bandwidth: "wide"
+        rx_tone: null
+        tx_tone: null
+        scan: true
+        rx_only: true
